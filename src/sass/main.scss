@@ -1,5 +1,179 @@
 @import 'smart-grid';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i&display=swap&subset=cyrillic,cyrillic-ext');
 
+*{
+    padding: 0;
+    padding: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+}
 
+body, html {
+    overflow: hidden;
+}
 
+.container {
+    @include wrapper();
+}
+
+.row {
+    @include row-flex();
+}
+
+nav {
+    @include col();
+    @include size(12);
+}
+
+#checkbox-menu {
+    display: none;
+}
+
+.menu {
+    padding: 0;
+    margin: 0;
+    height: 50px;
+    display: flex;
+    font-display: row;
+    justify-content: space-around;
+    align-items: center;
+    list-style-type: none;
+
+    @include sm(flex-direction,column);
+    @include sm(justify-content,space-around);
+    @include sm(align-items,center);
+    @include sm(height,0);
+    @include sm(transition,height .3s linear);
+
+    li {
+
+        @include sm(display,flex);
+        @include sm(align-items,center);
+        @include sm(width,95%);
+        @include sm(opacity,0);
+        @include sm(visibility,hidden);
+
+        a {
+            color: #000;
+            text-decoration: none;
+            align-self: center;
+            font-size: 13px;
+            padding: 10px 15px;
+            transition: background .2s linear;
+
+            @include sm(width,95%);
+            @include sm(text-align,center);
+            @include sm(align-items,center);
+            @include sm(align-content,center);
+
+            &:hover {
+                background-color: #ffcc01;
+                border-radius: 3px;
+            }
+
+            &.logo {
+                font-size: 25px;
+                margin-right: 240px;
+                font-weight: bold;
+
+                @include sm(font-size,21px);
+                @include sm(margin-right,0);
+            }
+
+            &.contacts {
+                margin-right: 100px;
+
+                @include sm(margin-right,0);
+            }
+        }
+    }
+}
+
+.toggle {
+    display: none;
+    /*width: 50px;
+    height: 50px;
+    border-radius: 50%;*/
+    position: relative;
+    background-color: #fff;
+
+    @include sm(clear,both);
+    @include sm(display,block);
+    @include sm(text-align,center);
+    @include sm(height,40px);
+    @include sm(width,100%);
+    @include sm(background,#ffcc01);
+    @include sm(transition,all .1s linear);
+
+    &:hover {
+        @include sm(background,#d3a900);
+    }
+
+    span {
+        position: absolute;
+        top: 50%;
+        margin-top: -1px;
+        left: 50%;
+        margin-left: -15px;
+        height: 3px;
+        width: 30px;
+        background-color: #222;
+
+        &::before,
+        &::after {
+            position: absolute;
+            top: 50%;
+            margin-top: -1px;
+            left: 50%;
+            margin-left: -15px;
+            height: 3px;
+            width: 30px;
+            background-color: #222;
+            content: '';
+            display: block;
+            transition: .4s;
+        }
+
+        &::before{
+            transform: translateY(-10px);
+        }
+
+        &::after{
+            transform: translateY(8px);
+        }
+    }
+}
+
+#checkbox-menu {
+
+    &:checked {
+
+        & + label {
+            .touch {
+
+                @include sm(height,350px);
+
+                li {
+                    @include sm(opacity,1);
+                    @include sm(visibility,visible);
+                    @include sm(transition,all .7s linear);
+                }
+            }
+
+            .toggle {
+
+                span {
+                    height: 0;
+    
+                    &::before {
+                        transform: rotate(45deg);
+                    }
+    
+                    &::after {
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+        }
+    }
+}
